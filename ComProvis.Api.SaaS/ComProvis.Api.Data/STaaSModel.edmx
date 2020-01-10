@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="STaaSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DiskSpace">
+          <Key>
+            <PropertyRef Name="DiskSpaceID" />
+          </Key>
+          <Property Name="DiskSpaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="DiskSpaceStateID" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="AsetGroupID" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiskSize" Type="int" Nullable="false" />
+          <Property Name="DiskSizeUnitID" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NumOfUsers" Type="int" Nullable="false" />
+          <Property Name="IsLocked" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="ExternalProductId" Type="nvarchar" MaxLength="36" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IDRole" />
+          </Key>
+          <Property Name="IDRole" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar" MaxLength="450" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ExternalId" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <Function Name="GetOrderDemandByExternalTransactionId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="QM">
+          <Parameter Name="orderDemandGuid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetOrderDemandByGuid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="QM">
+          <Parameter Name="orderDemandGuid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertLogRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="QM">
+          <Parameter Name="source" Type="nvarchar" Mode="In" />
+          <Parameter Name="level" Type="nvarchar" Mode="In" />
+          <Parameter Name="message" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="referenceId" Type="nvarchar" Mode="In" />
+          <Parameter Name="data" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SaveOrderDemand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="QM">
+          <Parameter Name="parentDemandId" Type="int" Mode="In" />
+          <Parameter Name="guid" Type="nvarchar" Mode="In" />
+          <Parameter Name="companyId" Type="int" Mode="In" />
+          <Parameter Name="provisioningTypeId" Type="int" Mode="In" />
+          <Parameter Name="orderDemandStateId" Type="int" Mode="In" />
+          <Parameter Name="orderDemandTypeId" Type="int" Mode="In" />
+          <Parameter Name="jsondata" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="externalTransactionId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetCompanyByExternalId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="STaaS">
+          <Parameter Name="externalId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetCompanyFirstAdminByExternalId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="STaaS">
+          <Parameter Name="externalId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetUserByExternalId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="STaaS">
+          <Parameter Name="externalId" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="STaaSModelStoreContainer">
+          <EntitySet Name="DiskSpace" EntityType="Self.DiskSpace" Schema="STaaS" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="STaaS.Codebook" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="STaaS.Codebook" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="STaaSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="STaaSContext" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="InsertLogRecord">
+            <Parameter Name="source" Mode="In" Type="String" />
+            <Parameter Name="level" Mode="In" Type="String" />
+            <Parameter Name="message" Mode="In" Type="String" />
+            <Parameter Name="referenceId" Mode="In" Type="String" />
+            <Parameter Name="data" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCompanyByExternalId" ReturnType="Collection(STaaSModel.SpGetCompanyByExternalId)">
+          <Parameter Name="externalId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetOrderDemandByGuid" ReturnType="Collection(STaaSModel.SpGetOrderDemandByGuid)">
+          <Parameter Name="orderDemandGuid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SaveOrderDemand" ReturnType="Collection(Int32)">
+            <Parameter Name="parentDemandId" Mode="In" Type="Int32" />
+            <Parameter Name="guid" Mode="In" Type="String" />
+            <Parameter Name="companyId" Mode="In" Type="Int32" />
+            <Parameter Name="provisioningTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="orderDemandStateId" Mode="In" Type="Int32" />
+            <Parameter Name="orderDemandTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="jsondata" Mode="In" Type="String" />
+            <Parameter Name="externalTransactionId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserByExternalId" ReturnType="Collection(STaaSModel.SpGetUserByExternalId)">
+          <Parameter Name="externalId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCompanyFirstAdminByExternalId" ReturnType="Collection(STaaSModel.SpGetCompanyFirstAdminByExternalId)">
+          <Parameter Name="externalId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetOrderDemandByExternalTransactionId" ReturnType="Collection(STaaSModel.SpGetOrderDemandByExternalTransactionId)">
+          <Parameter Name="orderDemandGuid" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Products" EntityType="STaaSModel.Products" />
+          <EntitySet Name="DiskSpace" EntityType="STaaSModel.DiskSpace" />
+          <EntitySet Name="Roles" EntityType="STaaSModel.Roles" />
+        </EntityContainer>
+        <ComplexType Name="SpGetCompanyByExternalId">
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+          <Property Type="String" Name="ExternalId" Nullable="false" MaxLength="36" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsSuspended" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="LastChangeDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SpGetOrderDemandByGuid">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Guid" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+          <Property Type="Int32" Name="ProvisioningTypeId" Nullable="false" />
+          <Property Type="Int32" Name="OrderDemandStateId" Nullable="false" />
+          <Property Type="Int32" Name="OrderDemandTypeId" Nullable="false" />
+          <Property Type="String" Name="JsonData" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetUserByExternalId_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="ExternalId" Nullable="false" MaxLength="36" />
+          <Property Type="Int32" Name="CompanyId" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="RoleId" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ContactInfo" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsSuspended" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="LastChangeDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SpGetUserByExternalId">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="ExternalId" Nullable="false" MaxLength="36" />
+          <Property Type="Int32" Name="CompanyId" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="RoleId" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ContactInfo" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsSuspended" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="LastChangeDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SpGetCompanyFirstAdminByExternalId">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="ExternalId" Nullable="false" MaxLength="36" />
+          <Property Type="Int32" Name="CompanyId" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="RoleId" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ContactInfo" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsSuspended" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="LastChangeDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SpGetOrderDemandByExternalTransactionId">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Guid" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+          <Property Type="Int32" Name="ProvisioningTypeId" Nullable="false" />
+          <Property Type="Int32" Name="OrderDemandStateId" Nullable="false" />
+          <Property Type="Int32" Name="OrderDemandTypeId" Nullable="false" />
+          <Property Type="String" Name="JsonData" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiskSize" Type="Int32" Nullable="false" />
+          <Property Name="DiskSizeUnitID" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumOfUsers" Type="Int32" Nullable="false" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExternalProductId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DiskSpace">
+          <Key>
+            <PropertyRef Name="DiskSpaceID" />
+          </Key>
+          <Property Name="DiskSpaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="DiskSpaceStateID" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <Property Name="OwnerID" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AsetGroupID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IDRole" />
+          </Key>
+          <Property Name="IDRole" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ExternalId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="STaaSModelStoreContainer" CdmEntityContainer="STaaSContext" >
+          <FunctionImportMapping FunctionImportName="InsertLogRecord" FunctionName="STaaSModel.Store.InsertLogRecord" />
+          <FunctionImportMapping FunctionImportName="GetCompanyByExternalId" FunctionName="STaaSModel.Store.GetCompanyByExternalId">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="STaaSModel.SpGetCompanyByExternalId">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="IsSuspended" ColumnName="IsSuspended" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastChangeDate" ColumnName="LastChangeDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetOrderDemandByGuid" FunctionName="STaaSModel.Store.GetOrderDemandByGuid">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="STaaSModel.SpGetOrderDemandByGuid">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="ProvisioningTypeId" ColumnName="ProvisioningTypeId" />
+                <ScalarProperty Name="OrderDemandStateId" ColumnName="OrderDemandStateId" />
+                <ScalarProperty Name="OrderDemandTypeId" ColumnName="OrderDemandTypeId" />
+                <ScalarProperty Name="JsonData" ColumnName="JsonData" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SaveOrderDemand" FunctionName="STaaSModel.Store.SaveOrderDemand" />
+          <FunctionImportMapping FunctionImportName="GetUserByExternalId" FunctionName="STaaSModel.Store.GetUserByExternalId">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="STaaSModel.SpGetUserByExternalId">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
+                <ScalarProperty Name="IsSuspended" ColumnName="IsSuspended" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastChangeDate" ColumnName="LastChangeDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCompanyFirstAdminByExternalId" FunctionName="STaaSModel.Store.GetCompanyFirstAdminByExternalId">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="STaaSModel.SpGetCompanyFirstAdminByExternalId">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
+                <ScalarProperty Name="IsSuspended" ColumnName="IsSuspended" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastChangeDate" ColumnName="LastChangeDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetOrderDemandByExternalTransactionId" FunctionName="STaaSModel.Store.GetOrderDemandByExternalTransactionId">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="STaaSModel.SpGetOrderDemandByExternalTransactionId">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="ProvisioningTypeId" ColumnName="ProvisioningTypeId" />
+                <ScalarProperty Name="OrderDemandStateId" ColumnName="OrderDemandStateId" />
+                <ScalarProperty Name="OrderDemandTypeId" ColumnName="OrderDemandTypeId" />
+                <ScalarProperty Name="JsonData" ColumnName="JsonData" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="STaaSModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ExternalProductId" ColumnName="ExternalProductId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="NumOfUsers" ColumnName="NumOfUsers" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DiskSizeUnitID" ColumnName="DiskSizeUnitID" />
+                <ScalarProperty Name="DiskSize" ColumnName="DiskSize" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiskSpace">
+            <EntityTypeMapping TypeName="STaaSModel.DiskSpace">
+              <MappingFragment StoreEntitySet="DiskSpace">
+                <ScalarProperty Name="AsetGroupID" ColumnName="AsetGroupID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DiskSpaceStateID" ColumnName="DiskSpaceStateID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="DiskSpaceID" ColumnName="DiskSpaceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="STaaSModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

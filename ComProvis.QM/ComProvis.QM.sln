@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComProvis.QM", "ComProvis.QM\ComProvis.QM.csproj", "{AA924777-5698-4E1F-BAA8-A44F8FEEAD2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComProvis.Enums", "ComProvis.Enums\ComProvis.Enums.csproj", "{8265C177-D965-46CC-A707-D0D7ABD82C7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComProvis.Data", "ComProvis.Data\ComProvis.Data.csproj", "{DB7E3B64-7EA7-497B-9209-E344D8A27E9D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComProvis.Params", "ComProvis.Params\ComProvis.Params.csproj", "{E628FB9D-372F-46FD-8C90-B266C1720BC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComProvis.Data.Entitys", "ComProvis.Data.Entitys\ComProvis.Data.Entitys.csproj", "{03E2528E-1320-4F49-8CCA-7946A05A7EFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComProvis.Actions", "ComProvis.Actions\ComProvis.Actions.csproj", "{BF6B85AB-0ED8-49A6-ADE0-BEDF70E9E15D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComProvis.UnitTest", "ComProvis.UnitTest\ComProvis.UnitTest.csproj", "{0D2B0303-382D-4AEE-8F9E-33CF26FA4123}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA924777-5698-4E1F-BAA8-A44F8FEEAD2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA924777-5698-4E1F-BAA8-A44F8FEEAD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA924777-5698-4E1F-BAA8-A44F8FEEAD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA924777-5698-4E1F-BAA8-A44F8FEEAD2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8265C177-D965-46CC-A707-D0D7ABD82C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8265C177-D965-46CC-A707-D0D7ABD82C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8265C177-D965-46CC-A707-D0D7ABD82C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8265C177-D965-46CC-A707-D0D7ABD82C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB7E3B64-7EA7-497B-9209-E344D8A27E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB7E3B64-7EA7-497B-9209-E344D8A27E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7E3B64-7EA7-497B-9209-E344D8A27E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7E3B64-7EA7-497B-9209-E344D8A27E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E628FB9D-372F-46FD-8C90-B266C1720BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E628FB9D-372F-46FD-8C90-B266C1720BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E628FB9D-372F-46FD-8C90-B266C1720BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E628FB9D-372F-46FD-8C90-B266C1720BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E2528E-1320-4F49-8CCA-7946A05A7EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E2528E-1320-4F49-8CCA-7946A05A7EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E2528E-1320-4F49-8CCA-7946A05A7EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E2528E-1320-4F49-8CCA-7946A05A7EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF6B85AB-0ED8-49A6-ADE0-BEDF70E9E15D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF6B85AB-0ED8-49A6-ADE0-BEDF70E9E15D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF6B85AB-0ED8-49A6-ADE0-BEDF70E9E15D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF6B85AB-0ED8-49A6-ADE0-BEDF70E9E15D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D2B0303-382D-4AEE-8F9E-33CF26FA4123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D2B0303-382D-4AEE-8F9E-33CF26FA4123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D2B0303-382D-4AEE-8F9E-33CF26FA4123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D2B0303-382D-4AEE-8F9E-33CF26FA4123}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B41DC75-2431-4396-94FC-6034B89B0EF2}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://13.93.9.35:8080/tfs/comprovis
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ComProvis.Actions\\ComProvis.Actions.csproj
+		SccProjectName1 = ComProvis.Actions
+		SccLocalPath1 = ComProvis.Actions
+		SccProjectUniqueName2 = ComProvis.Data.Entitys\\ComProvis.Data.Entitys.csproj
+		SccProjectName2 = ComProvis.Data.Entitys
+		SccLocalPath2 = ComProvis.Data.Entitys
+		SccProjectUniqueName3 = ComProvis.Data\\ComProvis.Data.csproj
+		SccProjectName3 = ComProvis.Data
+		SccLocalPath3 = ComProvis.Data
+		SccProjectUniqueName4 = ComProvis.Enums\\ComProvis.Enums.csproj
+		SccProjectName4 = ComProvis.Enums
+		SccLocalPath4 = ComProvis.Enums
+		SccProjectUniqueName5 = ComProvis.Params\\ComProvis.Params.csproj
+		SccProjectName5 = ComProvis.Params
+		SccLocalPath5 = ComProvis.Params
+		SccProjectUniqueName6 = ComProvis.QM\\ComProvis.QM.csproj
+		SccProjectName6 = ComProvis.QM
+		SccLocalPath6 = ComProvis.QM
+		SccProjectUniqueName7 = ComProvis.UnitTest\\ComProvis.UnitTest.csproj
+		SccProjectName7 = ComProvis.UnitTest
+		SccLocalPath7 = ComProvis.UnitTest
+	EndGlobalSection
+EndGlobal

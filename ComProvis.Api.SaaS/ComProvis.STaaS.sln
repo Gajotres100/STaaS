@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComProvis.STaaS.SaaSApi", "SaaSApi\ComProvis.STaaS.SaaSApi.csproj", "{B55E9EEA-FB98-4C61-A70D-8CF426E27902}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComProvis.STaaS.Data", "ComProvis.Api.Data\ComProvis.STaaS.Data.csproj", "{AC7D2E69-F6A4-4715-B3C6-2F966F2C7B24}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComProvis.Enums", "..\ComProvis.QM\ComProvis.Enums\ComProvis.Enums.csproj", "{D444142F-B3DE-4DBF-A7F3-D317057A3109}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComProvis.Params", "..\ComProvis.QM\ComProvis.Params\ComProvis.Params.csproj", "{72FBEC1A-2462-4956-B121-C4F8FE6DEC4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B55E9EEA-FB98-4C61-A70D-8CF426E27902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B55E9EEA-FB98-4C61-A70D-8CF426E27902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B55E9EEA-FB98-4C61-A70D-8CF426E27902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B55E9EEA-FB98-4C61-A70D-8CF426E27902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7D2E69-F6A4-4715-B3C6-2F966F2C7B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7D2E69-F6A4-4715-B3C6-2F966F2C7B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7D2E69-F6A4-4715-B3C6-2F966F2C7B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7D2E69-F6A4-4715-B3C6-2F966F2C7B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D444142F-B3DE-4DBF-A7F3-D317057A3109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D444142F-B3DE-4DBF-A7F3-D317057A3109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D444142F-B3DE-4DBF-A7F3-D317057A3109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D444142F-B3DE-4DBF-A7F3-D317057A3109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72FBEC1A-2462-4956-B121-C4F8FE6DEC4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72FBEC1A-2462-4956-B121-C4F8FE6DEC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72FBEC1A-2462-4956-B121-C4F8FE6DEC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72FBEC1A-2462-4956-B121-C4F8FE6DEC4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0354CC2-3AC5-40F9-AD1B-650904A6029E}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://13.93.9.35:8080/tfs/comprovis
+		SccProjectUniqueName0 = ..\\ComProvis.QM\\ComProvis.Enums\\ComProvis.Enums.csproj
+		SccProjectName0 = ../ComProvis.QM/ComProvis.Enums
+		SccLocalPath0 = ..\\ComProvis.QM\\ComProvis.Enums
+		SccProjectUniqueName1 = ..\\ComProvis.QM\\ComProvis.Params\\ComProvis.Params.csproj
+		SccProjectName1 = ../ComProvis.QM/ComProvis.Params
+		SccLocalPath1 = ..\\ComProvis.QM\\ComProvis.Params
+		SccLocalPath2 = .
+		SccProjectUniqueName3 = ComProvis.Api.Data\\ComProvis.STaaS.Data.csproj
+		SccProjectName3 = ComProvis.Api.Data
+		SccLocalPath3 = ComProvis.Api.Data
+		SccProjectUniqueName4 = SaaSApi\\ComProvis.STaaS.SaaSApi.csproj
+		SccProjectName4 = SaaSApi
+		SccLocalPath4 = SaaSApi
+	EndGlobalSection
+EndGlobal

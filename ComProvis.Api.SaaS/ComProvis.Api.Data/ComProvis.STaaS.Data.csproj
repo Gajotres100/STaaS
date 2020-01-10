@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AC7D2E69-F6A4-4715-B3C6-2F966F2C7B24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ComProvis.Api.Data</RootNamespace>
+    <AssemblyName>ComProvis.Api.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Customers\CustomerManager.cs" />
+    <Compile Include="DiskSpace.cs">
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetUserByExternalId_Result.cs">
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Loggers\LoggerManager.cs" />
+    <Compile Include="OrderDemands\OrderDemandManager.cs" />
+    <Compile Include="Products.cs">
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles.cs">
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpGetCompanyByExternalId.cs">
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpGetCompanyFirstAdminByExternalId.cs">
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpGetOrderDemandByExternalTransactionId.cs">
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpGetOrderDemandByGuid.cs">
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpGetUserByExternalId.cs">
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STaaSModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>STaaSModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STaaSModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>STaaSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STaaSModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>STaaSModel.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="STaaSModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>STaaSModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="STaaSModel.edmx.diagram">
+      <DependentUpon>STaaSModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="STaaSModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>STaaSModel.edmx</DependentUpon>
+      <LastGenOutput>STaaSModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="STaaSModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>STaaSModel.edmx</DependentUpon>
+      <LastGenOutput>STaaSModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
